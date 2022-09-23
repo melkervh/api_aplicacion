@@ -54,13 +54,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'No hay datos disponibles';
                     }
                 break;
-                case 'clienteDepartamento':
-                    if ($result['dataset'] = $graficas->clienteDepartamento()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['exception'] = 'No hay datos disponibles';
-                    }
-                break;
+    
                 case 'productosMasVendidos':
                     if ($result['dataset'] = $graficas->productosMasVendidos()) {
                         $result['status'] = 1;

@@ -150,23 +150,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = Database::getException();
                     }
                     break;
-                    case 'changePassword':
-                        $_POST = $listas->validateForm($_POST);
-                        if (!$listas->setId($_SESSION['id_usuario'])) {
-                            $result['exception'] = 'Usuario incorrecto';
-                        } elseif (!$listas->checkPassword($_POST['actual'])) {
-                            $result['exception'] = 'Clave actual incorrecta';
-                        } elseif ($_POST['nueva'] != $_POST['confirmar']) {
-                            $result['exception'] = 'Claves nuevas diferentes';
-                        } elseif (!$listas->setClave($_POST['nueva'])) {
-                            $result['exception'] = $listas->getPasswordError();
-                        } elseif ($listas->changePassword()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Contraseña cambiada correctamente';
-                        } else {
-                            $result['exception'] = Database::getException();
-                        }
-                        break;
+
 
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';
