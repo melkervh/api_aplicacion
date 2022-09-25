@@ -1,8 +1,7 @@
 <?php
-require('database.php');
-require('validator.php');
-require('../libraries/fpdf182/fpdf.php');
-
+require('../../helpers/database.php');
+require('../../helpers/validaciones.php');
+require('../../libraries/fpdf182/fpdf.php');
 /**
 *   Clase para definir las plantillas de los reportes del sitio privado. Para más información http://www.fpdf.org/
 */
@@ -10,7 +9,6 @@ class Report extends FPDF
 {
     // Propiedad para guardar el título del reporte.
     private $title = null;
-
     /*
     *   Método para iniciar el reporte con el encabezado del documento.
     *
@@ -25,7 +23,7 @@ class Report extends FPDF
         // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en los reportes.
         session_start();
         // Se verifica si un administrador ha iniciado sesión para generar el documento, de lo contrario se direcciona a main.php
-        if (1==1) {
+        if (1 == 1) {
             // Se asigna el título del documento a la propiedad de la clase.
             $this->title = $title;
             // Se establece el título del documento (true = utf-8).
