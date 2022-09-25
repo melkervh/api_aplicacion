@@ -1,6 +1,6 @@
 <?php
 require('../../helpers/database.php');
-require('../../helpers/validaciones.php');
+require('../../helpers/validator.php');
 require('../../libraries/fpdf182/fpdf.php');
 /**
 *   Clase para definir las plantillas de los reportes del sitio privado. Para más información http://www.fpdf.org/
