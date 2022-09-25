@@ -1,7 +1,7 @@
 <?php
 /* Clase para manejar la productos de la base de datos. */
 /* Es clase hija de Validator. */
-
+header('Access-Control-Allow-Origin: *');
 class Detalles extends Validator{
     private $id_produto= null;
     private $precio_u= null;

@@ -2,7 +2,7 @@
 require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
 require_once('../models/marcas.php');
-
+header('Access-Control-Allow-Origin: *');
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.

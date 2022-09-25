@@ -1,7 +1,7 @@
 <?php
 /* Clase para manejar el historial de la base de datos. */
 /* Es clase hija de Validator. */
-
+header('Access-Control-Allow-Origin: *');
 class Clientes extends Validator
 {
     /* Método para cargar el historial ....................................................... */

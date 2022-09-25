@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 class createcredito extends Validator
 {
     /* valores del cliente*/ 

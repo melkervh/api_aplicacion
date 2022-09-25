@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 class Proveedores extends Validator
 {
     //funcion para mostrar datos en la tabla
