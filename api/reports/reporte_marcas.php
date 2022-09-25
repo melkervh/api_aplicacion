@@ -4,7 +4,7 @@ if (isset($_GET['id_marca'])) {
     require('../helpers/dashboard_report.php');
     require('../models/marcas.php');
     require('../models/productos.php');
-
+    header('Access-Control-Allow-Origin: *');
     // Se instancia el módelo Marca para procesar los datos.
     $marca = new Marcas;
 

@@ -3,7 +3,7 @@
 if (isset($_GET['id'])) {
     require('../helpers/dashboard_report.php');
     require('../models/historialcre.php');
-
+    header('Access-Control-Allow-Origin: *');
     // Se instancia el módelo Pedidos para obtener los datos.
     $facturaCre = new Historialcre;
 

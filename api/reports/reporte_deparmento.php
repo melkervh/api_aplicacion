@@ -3,7 +3,7 @@
 require('../helpers/dashboard_report.php');
 //Se llama los modelos de los pedidos
 require('../models/clientes.php');
-
+header('Access-Control-Allow-Origin: *');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.

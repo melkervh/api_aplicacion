@@ -1,7 +1,7 @@
 <?php
 require('../helpers/dashboard_report.php');
 require('../models/proveedores.php');
-
+header('Access-Control-Allow-Origin: *');
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
 $pdf->startReport('Listado de proveedores');
