@@ -2,7 +2,7 @@
 require('database.php');
 require('validator.php');
 require('../libraries/fpdf182/fpdf.php');
-header('Access-Control-Allow-Origin: *');
+
 /**
 *   Clase para definir las plantillas de los reportes del sitio privado. Para más información http://www.fpdf.org/
 */
@@ -25,7 +25,7 @@ class Report extends FPDF
         // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en los reportes.
         session_start();
         // Se verifica si un administrador ha iniciado sesión para generar el documento, de lo contrario se direcciona a main.php
-        if ( 1 == 1) {
+        if (isset($_SESSION['id_usuario']) OR TRUE) {
             // Se asigna el título del documento a la propiedad de la clase.
             $this->title = $title;
             // Se establece el título del documento (true = utf-8).
@@ -59,7 +59,7 @@ class Report extends FPDF
         $this->setFont('Arial', '', 10);
         $this->cell(166, 10, 'Fecha/Hora: '.date('d-m-Y H:i:s'), 0, 1, 'C');
         $this->cell(20);
-        $this->cell(166, 10, 'Usuario: '.['correo_usuario'], 0, 1, 'C');
+        $this->cell(166, 10, 'Usuario: '.$_SESSION['correo_usuario'], 0, 1, 'C');
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
         $this->ln(10);
     }
