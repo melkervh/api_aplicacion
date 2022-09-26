@@ -11,6 +11,7 @@ class Database
     private static $statement = null;
     private static $error = null;
 
+    
     /*
     *   Método para establecer la conexión con el servidor de base de datos.
     */

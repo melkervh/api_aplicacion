@@ -1,5 +1,5 @@
  <?php
- header('Access-Control-Allow-Origin: *');
+
 class Graficos extends Validator{
     
  public function productosconmas()

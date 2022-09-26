@@ -1,7 +1,7 @@
 <?php
 /* Clase para manejar la tabla tipo_producto de la base de datos. */
 /* Es clase hija de Validator. */
-header('Access-Control-Allow-Origin: *');
+
 class TipoProducto extends Validator{
 
     // Declaración de atributos (propiedades).
