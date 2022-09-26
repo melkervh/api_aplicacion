@@ -4,7 +4,7 @@ require('validator.php');
 require('../libraries/fpdf182/fpdf.php');
 header('Access-Control-Allow-Origin: *'); 
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
- header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 header('Access-Control-Allow-Origin: *');
 
 /**
@@ -28,7 +28,7 @@ class Report extends FPDF
         // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en los reportes.
         session_start();
         // Se verifica si un administrador ha iniciado sesión para generar el documento, de lo contrario se direcciona a main.php
-        if (($_SESSION['id_usuario'])|| 1 == 1) {
+        if ( 1 == 1) {
             // Se asigna el título del documento a la propiedad de la clase.
             $this->title = $title;
             // Se establece el título del documento (true = utf-8).
