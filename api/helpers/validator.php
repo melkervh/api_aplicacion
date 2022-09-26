@@ -1,5 +1,4 @@
 <?php
-header('Access-Control-Allow-Origin: *'); 
 
 /*
 *	Clase para validar todos los datos de entrada del lado del servidor.

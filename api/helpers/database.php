@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: *'); 
+
 
 /*
 *   Clase para realizar las operaciones en la base de datos.
