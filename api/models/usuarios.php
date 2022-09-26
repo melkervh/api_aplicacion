@@ -3,7 +3,6 @@
 *	Clase para manejar la tabla usuarios de la base de datos.
 *   Es clase hija de Validator.
 */
-header('Access-Control-Allow-Origin: *');
 class Usuarios extends Validator
 {
     // Declaración de atributos (propiedades).
