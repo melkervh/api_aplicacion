@@ -1,5 +1,5 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
 /*
 *	Clase para validar todos los datos de entrada del lado del servidor.
 *   Es clase padre de los modelos porque los datos se validan al momento de asignar valores a las propiedades.

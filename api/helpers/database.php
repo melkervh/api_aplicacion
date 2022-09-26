@@ -1,6 +1,5 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-
 /*
 *   Clase para realizar las operaciones en la base de datos.
 */
@@ -11,7 +10,7 @@ class Database
     private static $statement = null;
     private static $error = null;
 
-    
+
     /*
     *   Método para establecer la conexión con el servidor de base de datos.
     */
