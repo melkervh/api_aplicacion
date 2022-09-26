@@ -102,4 +102,12 @@ if (isset($_GET['action'])) {
 } else {
     print(json_encode('Recurso no disponible'));
 }
+fetch('url', {
+    mode: 'no-cors',
+    method: "post",
+    headers: {
+         "Content-Type": "application/json"
+    },
+    body: JSON.stringify(obj)
+})
 ?>

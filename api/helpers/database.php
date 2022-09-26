@@ -25,7 +25,14 @@ class Database
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
         self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432', $username, $password);
     }
-
+    fetch('url', {
+        mode: 'no-cors',
+        method: "post",
+        headers: {
+             "Content-Type": "application/json"
+        },
+        body: JSON.stringify(obj)
+})
     /*
     *   Método para ejecutar las siguientes sentencias SQL: insert, update y delete.
     *
