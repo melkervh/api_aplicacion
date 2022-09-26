@@ -14,7 +14,7 @@ if (isset($_GET['action'])) {
     date_default_timezone_set('America/El_Salvador');
     $date = date('Y-m-d H:i');
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['id_usuario']) && $_SESSION['fechaexp'] == 1) {
+    if ($usuario->buscarToken()) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
@@ -30,6 +30,7 @@ if (isset($_GET['action'])) {
                 if (session_destroy()) {
                     $result['status'] = 1;
                     $result['message'] = 'Sesión eliminada correctamente';
+                    $usuario->eliminarToken()
                 } else {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                 }
@@ -82,7 +83,7 @@ if (isset($_GET['action'])) {
                 } elseif ($usuario->checkPasswordDate() < 90) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
-                    $_SESSION['id_usuario'] = $usuario->getIdUsuario();
+                    $usuario->asignarToken($_POST['correo']);
                     $_SESSION['correo_usuario'] = $usuario->getCorreoUsuario();
                     $_SESSION['fechaexp'] = 1;
                 }   else {

@@ -304,5 +304,31 @@ class Usuarios extends Validator
         $params = array($this->clave_usuario, $fecha_actual, $_SESSION['id_usuario'] );
         return Database::executeRow($sql, $params);
       }
+    
+      public function asignarToken($usuario)
+    {
+        $sql = 'UPDATE usuario
+                SET  token_login = true
+                WHERE correo_usuario = ?';
+        $params = array($usuario);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function eliminarToken()
+    {
+        $sql = "UPDATE usuario
+                SET  token_login = false
+                WHERE correo_usuario = 'solis@gmail.com'";
+        $params = array($this->usuario_token);
+        return Database::executeRow($sql, $params);
+    }
+    public function buscarToken()
+    {
+        $sql = "SELECT token_login 
+        FROM usuario
+        WHERE correo_usuario = 'solis@gmail.com'";
+        $params = null;
+        return Database::getRow($sql, $params);
+    }
 }
 ?>
