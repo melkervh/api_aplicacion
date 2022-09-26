@@ -1,8 +1,8 @@
-<?php
+<?php header('Access-Control-Allow-Origin: *');>
 require('database.php');
 require('validator.php');
 require('../libraries/fpdf182/fpdf.php');
-header('Access-Control-Allow-Origin: *'); 
+ 
 
 /**
 *   Clase para definir las plantillas de los reportes del sitio privado. Para más información http://www.fpdf.org/
