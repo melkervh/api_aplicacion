@@ -44,7 +44,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (isset($_POST['usertoken'])) {
+                if (!$listas->setIdUsuario($_SESSION['id_usuario'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif ($result['dataset'] = $listas->readOne()) {
                     $result['status'] = 1;

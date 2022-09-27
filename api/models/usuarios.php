@@ -239,12 +239,12 @@ class Usuarios extends Validator
     }
 
      //Buscar un Usuarios//
-    public function readOne()
+    public function readOne($token)
     {
         $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, correo_usuario 
                 FROM usuario
-                WHERE id_usuario = ?';
-        $params = array($this->id_usuario);
+                WHERE token_login = ?';
+        $params = array($token);
         return Database::getRow($sql, $params);
     }
     public function readOne2()
