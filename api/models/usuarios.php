@@ -241,36 +241,36 @@ class Usuarios extends Validator
      //Buscar un Usuarios//
     public function readOne($token)
     {
-        $sql = 'SELECT  nombre_usuario, apellido_usuario, correo_usuario 
+        $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, correo_usuario 
                 FROM usuario
                 WHERE token_login = ?';
         $params = array($token);
         return Database::getRow($sql, $params);
     }
-    public function readOne2()
+    public function readOne2($token)
     {
         $sql = 'SELECT id_usuario 
                 FROM usuario
-                WHERE id_usuario = ?';
-        $params = array($this->id_usuario);
+                WHERE token_login = ?';
+        $params = array($token);
         return Database::getRow($sql, $params);
     }
 
     //Modificar un Usuario//
-    public function updateRow()
+    public function updateRow($token)
     {
         $sql = 'UPDATE usuario 
                 SET nombre_usuario = ?, apellido_usuario = ?, correo_usuario = ?
-                WHERE id_usuario = ?';
-        $params = array($this->nombre_usuario, $this->apellido_usuario, $this->correo_usuario, $this->id_usuario);
+                WHERE token_login = ?';
+        $params = array($this->nombre_usuario, $this->apellido_usuario, $this->correo_usuario, $token);
         return Database::executeRow($sql, $params);
     }
-    public function updateClave()
+    public function updateClave($token)
     {
         $sql = 'UPDATE usuario 
                 SET clave_usuario=?
-                WHERE id_usuario = ?';
-        $params = array($this->clave_usuario, $this->id_usuario);
+                WHERE  token_login = ?';
+        $params = array($this->clave_usuario, $token);
         return Database::executeRow($sql, $params);
     }
 
