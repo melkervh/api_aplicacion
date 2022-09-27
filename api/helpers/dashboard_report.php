@@ -2,7 +2,7 @@
 require('database.php');
 require('validator.php');
 require('../libraries/fpdf182/fpdf.php');
-header('Access-Control-Allow-Origin: *');
+
  
 
 /**
