@@ -14,7 +14,7 @@ if (isset($_GET['action'])) {
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_POST['usertoken'])|| 1==1) {
+    if (isset($_SESSION['id_usuario'])|| 1==1) {
         $result['session'] = 1;
 
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
@@ -44,7 +44,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$listas->setIdUsuario(isset($_POST['usertoken']))) {
+                if (isset($_POST['usertoken'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif ($result['dataset'] = $listas->readOne()) {
                     $result['status'] = 1;
@@ -55,7 +55,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
                 case 'readOne2':
-                    if (!$listas->setIdUsuario(isset($_POST['usertoken']))) {
+                    if (!$listas->setIdUsuario($_SESSION['id_usuario'])) {
                         $result['exception'] = 'Usuario incorrecto';
                     } elseif ($result['dataset'] = $listas->readOne2()) {
                         $result['status'] = 1;
@@ -67,7 +67,7 @@ if (isset($_GET['action'])) {
                     break;
             case 'update':
                 $_POST = $listas->validateForm($_POST);
-                if (!$listas->setIdUsuario(isset($_POST['usertoken']))) {
+                if (!$listas->setIdUsuario($_SESSION['id_usuario'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif (!$listas->readOne()) {
                     $result['exception'] = 'Usuario inexistente';
@@ -86,7 +86,7 @@ if (isset($_GET['action'])) {
                 break;
                 case 'update2':
                     $_POST = $listas->validateForm($_POST);
-                    if (!$listas->setIdUsuario(isset($_POST['usertoken']))) {
+                    if (!$listas->setIdUsuario($_SESSION['id_usuario'])) {
                         $result['exception'] = 'Usuario incorrecto';
                     } elseif (!$listas->readOne2()) {
                         $result['exception'] = 'Usuario inexistente';
