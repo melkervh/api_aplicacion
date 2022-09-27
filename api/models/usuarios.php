@@ -3,7 +3,6 @@
 *	Clase para manejar la tabla usuarios de la base de datos.
 *   Es clase hija de Validator.
 */
-header('Access-Control-Allow-Origin: *');
 class Usuarios extends Validator
 {
     // Declaración de atributos (propiedades).
@@ -15,6 +14,23 @@ class Usuarios extends Validator
     private $fecha = null;
     private $intentos = null;
     private $fecha_intentos;
+    // tokens
+    private $ramdon = null ;
+
+    public function setTokenRamdon($value)
+    {
+        if ($this->validateAlphanumeric($value, 16, 16)) {
+            $this->ramdon = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function getTokenRamdon()
+    {
+        return $this->ramdon;
+    }
+
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -304,22 +320,30 @@ class Usuarios extends Validator
         $params = array($this->clave_usuario, $fecha_actual, $_SESSION['id_usuario'] );
         return Database::executeRow($sql, $params);
       }
-    
-      public function asignarToken($usuario)
+    //crear token aleatorio
+     public function generateRandomString($length = 16) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+    public function asignarToken($usuario)
     {
         $sql = 'UPDATE usuario
-                SET  token_login = true
+                SET  token_login = ?
                 WHERE correo_usuario = ?';
-        $params = array($usuario);
+        $params = array($this->ramdon, $usuario);
         return Database::executeRow($sql, $params);
     }
-
-    public function eliminarToken()
+    public function eliminarToken($token)
     {
-        $sql = "UPDATE usuario
-                SET  token_login = false
-                WHERE correo_usuario = 'solis@gmail.com'";
-        $params = array($this->usuario_token);
+        $sql = 'UPDATE usuario
+        SET  token_login = null
+        WHERE token_login =?' ;
+        $params = array($token);
         return Database::executeRow($sql, $params);
     }
     public function buscarToken()

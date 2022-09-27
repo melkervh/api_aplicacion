@@ -1,4 +1,5 @@
 <?php
+//header('Access-Control-Allow-Origin: *');
 /*
 *   Clase para realizar las operaciones en la base de datos.
 */
@@ -8,6 +9,7 @@ class Database
     private static $connection = null;
     private static $statement = null;
     private static $error = null;
+
 
     /*
     *   Método para establecer la conexión con el servidor de base de datos.
@@ -24,6 +26,7 @@ class Database
         self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432', $username, $password);
     }
 
+      /*
     /*
     *   Método para ejecutar las siguientes sentencias SQL: insert, update y delete.
     *

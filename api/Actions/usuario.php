@@ -2,7 +2,7 @@
 require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
 require_once('../models/usuarios.php');
-header('Access-Control-Allow-Origin: *');
+
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
@@ -10,18 +10,19 @@ if (isset($_GET['action'])) {
     // Se instancia la clase correspondiente.
     $usuario = new Usuarios;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
-    $result = array('status' => 0, 'session' => 0, 'password'=>0, 'fechaexp' => null, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
+    $result = array('status' => 0,'usertoken'=> null, 'session' => 0, 'password'=>0, 'fechaexp' => null, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
     date_default_timezone_set('America/El_Salvador');
     $date = date('Y-m-d H:i');
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if ($usuario->buscarToken()) {
+    if (isset($_POST['usertoken'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'getUser':
-                if (isset($_SESSION['correo_usuario'])) {
+                if (isset($_POST['usertoken'])) {
                     $result['status'] = 1;
-                    $result['username'] = $_SESSION['correo_usuario'];
+                    $result['username'] = 'hola';
+                    $result['session'] = 1;
                 } else {
                     $result['exception'] = 'Correo de usuario indefinido';
                 }
@@ -30,7 +31,7 @@ if (isset($_GET['action'])) {
                 if (session_destroy()) {
                     $result['status'] = 1;
                     $result['message'] = 'Sesión eliminada correctamente';
-                    $usuario->eliminarToken()
+                    $usuario->eliminarToken($_POST['usertoken']);
                 } else {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                 }
@@ -83,7 +84,9 @@ if (isset($_GET['action'])) {
                 } elseif ($usuario->checkPasswordDate() < 90) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
+                    $usuario->setTokenRamdon($usuario->generateRandomString());
                     $usuario->asignarToken($_POST['correo']);
+                    $result['usertoken'] = $usuario->getTokenRamdon();
                     $_SESSION['correo_usuario'] = $usuario->getCorreoUsuario();
                     $_SESSION['fechaexp'] = 1;
                 }   else {
@@ -102,4 +105,5 @@ if (isset($_GET['action'])) {
 } else {
     print(json_encode('Recurso no disponible'));
 }
+
 ?>

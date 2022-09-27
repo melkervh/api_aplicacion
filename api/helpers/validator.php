@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 /*
 *	Clase para validar todos los datos de entrada del lado del servidor.
 *   Es clase padre de los modelos porque los datos se validan al momento de asignar valores a las propiedades.
@@ -41,6 +42,7 @@ class Validator
     *   
     *   Retorno: arreglo con los campos saneados del formulario.
     */
+    
     public function validateForm($fields)
     {
         foreach ($fields as $index => $value) {

@@ -1,6 +1,9 @@
 <?php
 require('../helpers/dashboard_report.php');
 require('../models/clientes.php');
+header('Access-Control-Allow-Origin: *'); 
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 header('Access-Control-Allow-Origin: *');
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.

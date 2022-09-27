@@ -1,9 +1,5 @@
 <?php
-/*
-*	Clase para manejar la tabla de detallle en  la base de datos.
-*   Es clase hija de Validator.
-*/
-header('Access-Control-Allow-Origin: *');
+
 class DetalleFactu extends Validator
 {
     private $id_detalle= null;
