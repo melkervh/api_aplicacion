@@ -69,7 +69,7 @@ class Productos extends Validator {
     }
     public function setfact_nor($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->vvalidateString($value)) {
             $this->id_fact_nor= $value;
             return true;
         } else {
