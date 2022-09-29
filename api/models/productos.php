@@ -69,7 +69,7 @@ class Productos extends Validator {
     }
     public function setfact_nor($value)
     {
-        if ($this->vvalidateString($value)) {
+        if ($this->validateNaturalNumber($value)) {
             $this->id_fact_nor= $value;
             return true;
         } else {
@@ -82,7 +82,7 @@ class Productos extends Validator {
     $sql = 'INSERT INTO detalle_factura(
         id_producto, precio_u, precio_total,cantidad_com,id_fact_nor)
        VALUES (?, ?, ?, ?)';
-    $params = array($this->id, $this->precio_u, $this->precio_total, $this->cantidad_com,$this->setfact_nor);
+    $params = array($this->id, $this->precio_u, $this->precio_total, $this->cantidad_com,$this->id_fact_nor);
     return Database::executeRow($sql, $params);
     }
     public function setId($value){
