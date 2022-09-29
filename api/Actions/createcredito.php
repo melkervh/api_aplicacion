@@ -58,8 +58,6 @@ if (isset($_GET['action'])) {
                 $_POST = $createcredito ->validateForm($_POST);
                 if (!$createcredito ->setIdProductoCre($_POST['codigo01'])) {
                 $result['exception'] = 'codigo incorrecto';
-                }  elseif (!$createcredito ->setNombrCre($_POST['nombre_pro'])) {
-                $result['exception'] = 'nombre no valido';
                 }elseif (!$createcredito ->setCantidadCre($_POST['cantidad'])) {
                 $result['exception'] = 'precio no valido';
                 }elseif (!$createcredito -> setPrecioUni($_POST['precio_u'])) {
