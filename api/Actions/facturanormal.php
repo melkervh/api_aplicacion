@@ -30,7 +30,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'direcion no valido';        
                 }elseif ($crearfactu->createCliente()) {
                     $result['status'] = 1;
-                    $result['message'] = 'cliente creado' ;
+                    $result['message'] = 'factura creado' ;
                 } else {
                     $result['exception'] = Database::getException();;
                 }
