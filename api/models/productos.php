@@ -81,7 +81,7 @@ class Productos extends Validator {
     {
     $sql = 'INSERT INTO detalle_factura(
         id_producto, precio_u, precio_total, cantidad_com)
-       VALUES (?, ?, ?, ?, ?)';
+       VALUES (?, ?, ?, ?)';
     $params = array($this->id, $this->precio_u, $this->precio_total, $this->cantidad_com);
     return Database::executeRow($sql, $params);
     }
