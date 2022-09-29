@@ -224,7 +224,7 @@ class createcredito extends Validator
     {
     $sql = 'INSERT INTO detalle_credito(
         id_producto, cantidad_cre, precio_u, total)
-        VALUES ( ?, ?, ?, ?, )';
+        VALUES ( ?, ?, ?, ?)';
     $params = array($this->id_producto,$this->cantidad_cre,$this->precio_u,$this->total);
     return Database::executeRow($sql, $params);
     }
